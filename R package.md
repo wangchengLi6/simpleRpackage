@@ -41,11 +41,11 @@ P1：为什么我们需要制作一个 R 包
 
 ` main(L = 100, p = 0.5, n = 4, seed = 1)` ，
 
-![image-20221204093849958](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221204093849958.png)
+![image-20221204093849958](.\R package.assets\image-20221204093849958.png)
 
 该 R 包已经上传至 GitHub，使用命令 `devtools::install_github("wangchengLi6/randomwalkli")` 即可安装。创建该 R 包所需的素材包括三个函数，分别是 `gene.chain` （用于生成绘制随机游走链的数据），`plot.chain` （使用 `gene.chain` 函数的数据，使用 `ggplot2` 包来生成一个 ggplot 对象）。 `main` 调用前两个函数，并最终绘制出随机游走链。
 
-素材也已经上传至 GitHub (链接 。。。。。。)
+素材也已经上传至 GitHub [simpleRpackage: About how to develop a simple R package (github.com)](https://github.com/wangchengLi6/simpleRpackage) 
 
 ## 1.1 准备工作
 
@@ -71,9 +71,7 @@ File >> New project >> New Directory >> package
 
 随后根据提示，输入你的包名（在本案例中，我们的包名是"randomwalkli"）
 
-
-
-![image-20221121123401435](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221121123401435.png)
+![image-20221121123401435](.\R package.assets\image-20221121123401435.png)
 
 创建项目之后，会自动生成一系列的文件，其中我们会涉及到的是以下四个文件/文件夹
 
@@ -108,7 +106,7 @@ File >> New project >> New Directory >> package
 
 方法一：图形化，Rstudio 界面右栏的两个窗口中，有一个小窗口选项是 `Build` ，单击进入后，点击 `Install` 按钮即可。
 
-![image-20221128192948686](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221128192948686.png)
+![image-20221128192948686](.\R package.assets\image-20221128192948686.png)
 
 方法二：代码化，Console 中运行代码 `devtools::install(<projectpath>)` 。该函数可以编译安装由 `devtools` 包创建的 R 包项目。提到这件事情是因为，某些命令行系统下（如linux服务器），当无法使用 Rstudio 时，可以使用该命令来安装储存在本地的 R 包。
 
@@ -116,7 +114,7 @@ File >> New project >> New Directory >> package
 >
 > 该函数如果未给定 `<projectpath>` 参数，则默认编译安装当前工作路径下的项目。这也是为什么前面强调了 工作路径 问题。更多参数请查看说明文档 `?devtools::install` 。
 
-![image-20221128193009356](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221128193009356.png)
+![image-20221128193009356](.\R package.assets\image-20221128193009356.png)
 
 安装好 R 包后，我们需要重启 R Console 并 `library` 该包。其中 Rstudio 界面的 `Install` 按钮将自动完成这两步。而代码化方法则需要手动重启 R console （可以在顶部菜单栏 >> Session >> Restart R 完成），并手动导入这个包： `library("randomwalkli")` 。
 
@@ -128,9 +126,9 @@ File >> New project >> New Directory >> package
 
 删除原有的 `hello.R` 文件，并在 R 文件夹中，创建两个 R 文件用于存放我们自己的函数：
 
-![image-20221204102642756](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221204102642756.png)
+![image-20221204102642756](.\R package.assets\image-20221204102642756.png)
 
-![image-20221204102658165](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221204102658165.png)
+![image-20221204102658165](.\R package.assets\image-20221204102658165.png)
 
 
 
@@ -152,7 +150,7 @@ File >> New project >> New Directory >> package
 >
 > 也就是说， R 包的 R 文件中的代码只会被执行一次，这意味着它无法达到我们预期的效果（比如说library某一个需要的包）。因此我们并不建议在 R 包的文件中写需要被执行的代码，而是只写可以被保留的对象（比如说函数，以及类、方法、范型等）。
 
-> 补充：如果要使用别人的包，那么可以在函数内部写`library` 。
+> 补充：如果要使用别人的包，那么可以在函数内部写`library` 。
 
 ## 1.4 小结
 
@@ -162,7 +160,7 @@ File >> New project >> New Directory >> package
 
 > 关于运行环境：
 >
-> 在包的功能比较单一，涉及的函数比较少的时候，环境问题主要就是包的依赖问题。比如说，素材中的 `plot.chain` 函数，需要调用 `ggplot2` 包中的某些函数。那么，如果别人电脑上还没有安装 `ggplot2` 包，我们的函数在 `library` 时，就会报错。 R 包开发的很重要的一个问题就是解决这样的包依赖问题。解决方法在 2.1 节 (5) 中。
+> 在包的功能比较单一，涉及的函数比较少的时候，环境问题主要就是包的依赖问题。比如说，素材中的 `plot.chain` 函数，需要调用 `ggplot2` 包中的某些函数。那么，如果别人电脑上还没有安装 `ggplot2` 包，我们的函数在 `library` 时，就会报错。 R 包开发的很重要的一个问题就是解决这样的包依赖问题。解决方法在 2.1 节 (5) 中。
 
 # 2 修改说明文档
 
@@ -298,7 +296,7 @@ Authors 部分的信息可以手动修改。
 
 以最简单的均值函数 `mean` 为例，使用 `help(mean)` 或者`?(mean)` 代码，就可以找到它的帮助文档。其中给出了 描述(description)、 用法(usage)、 参数(arguments)、 返回值(value)、 参考文献(references)、 相似内容(see also)、 案例(examples)。
 
-![image-20221128215708766](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221128215708766.png)
+![image-20221128215708766](.\R package.assets\image-20221128215708766.png)
 
 
 
@@ -355,11 +353,11 @@ main = function(p.length,p.prob,p.num,p.seed = 1){
 
 所有的帮助文档都会被保存在 `./man` 路径下，文件名是函数名 `function.Rd` 。这是一个 Rd 格式的文本文件，使用 Rstudio 或 任何文本编辑器打开，然后会发现这是一个类似于markdown的文件格式。
 
-![image-20221204110346649](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221204110346649.png)
+![image-20221204110346649](.\R package.assets\image-20221204110346649.png)
 
 考虑到 R 也不会检查文档是怎么产生的。所以另外一种创建的文档的方式自然是，自己按照相同的格式书写注释，或者在已有的文档上进行修改。当然，我们并不建议如此操作，因为下一次运行  `devtools::document()` 函数时，会更新所有的帮助文档。
 
-> 事实上，如果从 Rstudio 中打开，它会提示你该文档由函数 `devtools::document()` ，基于另一文件生成，因此在 Rstudio 中是只读 (read only) 的，以避免被误改。
+> 事实上，如果从 Rstudio 中打开，它会提示你该文档由函数 `devtools::document()` ，基于另一文件生成，因此在 Rstudio 中是只读 (read only) 的，以避免被误改。
 
 通过不同的关键词 `@<keyword>` ，我们还可以添加其它很多类型的内容。例如， `?mean` 中我们可以看到的 reference （参考文献）, see also （相关指引）等。可以根据自己的需求，查看说明文档或教程。
 
@@ -394,7 +392,7 @@ NULL
 
 - 第一行是标题 (title)，与标题相隔一个空行的是描述 (description)。
 - 之后的每一部分仍然使用 @ 加关键词指定内容属性：
-  - 例如 `@section` ，类似 Latex 中的 section。其中关键词后空一格是这个 section 的标题，标题以冒号 `:` 结尾。换一行书写 section 的内容。
+  - 例如 `@section` ，类似 Latex 中的 section。其中关键词后空一格是这个 section 的标题，标题以冒号 `:` 结尾。换一行书写 section 的内容。
 
 - 最后两行分别是文档类型 (docType) 和 名称 (name)：
   - 文档类型为 package，指这个说明文档给出的是 package 的信息。
@@ -460,7 +458,7 @@ plot.chain = function(dtplot){
 - 你希望从别人的包里面导进来 (import) 的函数
   - 为什么不直接在函数里面使用 `library` 来导入包：
     - 我们只是用到包的一部分函数，全部导入容易产生不必要的错误。
-    - 不需要每一个函数里面都写一次 `library` ，这样不方便管理。
+    - 不需要每一个函数里面都写一次 `library` ，这样不方便管理。
   - 比如说，素材中只使用了 `aes` `ggplot` `geom_line` `geom_abline` 四个函数，那我们可以只导入这四个函数。
 
 #### (2) 修改方法
@@ -469,13 +467,13 @@ plot.chain = function(dtplot){
 
 首先，在项目创建时，会默认生成一个 NAMESPACE 文件：
 
-![image-20221204114722849](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221204114722849.png)
+![image-20221204114722849](.\R package.assets\image-20221204114722849.png)
 
 这一行命令的意思是，将所有的函数都展示给用户。比如说我的 `gene.chain` 和 `gene.plot` 。同时也不导入任何需要的函数。因此我们需要做的步骤是：
 
 - 确认哪些函数是需要被用户使用的，并进行标识 `#' @export` 。（参见2.2.1.1 节的注释写法）
-- 确认哪些函数是需要被我们的函数所引用的，并告诉我们的系统 `#' @importfrom pck fun1 fun2 ...` ，或者是某些包 `#' @import pck` 。（参见2.2.1.1 节的注释写法）
-- 使用 `devtools::document()` 函数，更新 NAMESPACE 文件。（由于该函数只会修改由它创建的文档，因此需要把之前默认生成的 NAMESPACE 文件删除）
+- 确认哪些函数是需要被我们的函数所引用的，并告诉我们的系统 `#' @importfrom pck fun1 fun2 ...` ，或者是某些包 `#' @import pck` 。（参见2.2.1.1 节的注释写法）
+- 使用 `devtools::document()` 函数，更新 NAMESPACE 文件。（由于该函数只会修改由它创建的文档，因此需要把之前默认生成的 NAMESPACE 文件删除）
 
 ## 2.4 小结
 
@@ -504,7 +502,7 @@ devtools::install_github("username/packagename")
 
 ## 3.1 git 系统简介
 
-![img](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\0909f19a4f824317b51bec1a65999822.png)
+![img](.\R package.assets\0909f19a4f824317b51bec1a65999822.png)
 
 Git是一个分布式版本控制系统，其中包含了非常丰富的功能。仅我所了解的就包括 **版本管理** 和 **多人协作**。虽然将一个制作好的 R 包上传到 GitHub 上，需要涉及的知识其实非常少。但考虑到整个过程不可能绕开 **添加(add)** 和 **提交(commit)** 操作，因此我们仍将简单介绍一下版本管理相关的内容。
 
@@ -534,15 +532,15 @@ git config --global user.email "22xxxxxxxx@qq.com"
 
 1. 在项目所在路径下右键菜单，会出现两个选项（Git bash here / Git GUI here)，分别是以命令行形式打开 和 以图形化界面形式打开。
 
-   ![image-20221127201740989](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127201740989.png)
+   ![image-20221127201740989](.\R package.assets\image-20221127201740989.png)
 
 2. 执行 `git init` ，其中 `init` 是初始化命令。
 
-   ![image-20221127201810284](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127201810284.png)
+   ![image-20221127201810284](.\R package.assets\image-20221127201810284.png)
 
 3. 而后在工作目录下会生成一个隐藏文件夹 .git，这就是本地仓库和暂存区所在的文件夹。这个工作目录除了 .git 文件夹之外的部分就是工作区。
 
-   ![image-20221127201857203](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127201857203.png)
+   ![image-20221127201857203](.\R package.assets\image-20221127201857203.png)
 
 
 
@@ -550,25 +548,25 @@ git config --global user.email "22xxxxxxxx@qq.com"
 
 在开始之前，我们需要简单介绍一下工作区和本地仓库之间的关系：
 
-![image-20221127183356200](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127183356200.png)
+![image-20221127183356200](.\R package.assets\image-20221127183356200.png)
 
 在实际工作时，我们往往会将代码储存在一个文件夹（如上图，即本地仓库）内。当我们需要修改代码时，我们当然可以直接在 **本地仓库** 里面的 .R 文件上修改。这样做的缺点是，如果修改出现了问题，一般是不能后悔的。
 
 为了安全起见，我们会把 **本地仓库** 中的 .R 文件复制到 **工作区** ，而后修改 **工作区** 中复制的文件。把文件从本地仓库中复制到工作区的过程叫做 **checkout（检出）** 。（如下图）
 
-![image-20221127183748415](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127183748415.png)
+![image-20221127183748415](.\R package.assets\image-20221127183748415.png)
 
 在修改之后，我们还需要把修改好的文件复制回去。当然，我们可以直接覆盖掉原文件，但这意味着我们还是失去了后悔的机会。比较合理的思路是把两个版本的文件都保存下来。那么我们可以给修改后的文件做一个备注，与原始文件区分开来，然后再复制回去。
 
 这个过程中，我们会先将修改后的文件复制进 **暂存区** ，这个过程叫做 **add（添加）**。（如下图）
 
-![image-20221127184426797](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127184426797.png)
+![image-20221127184426797](.\R package.assets\image-20221127184426797.png)
 
 **暂存区** 的文件仅仅是临时保存你的修改，如果确认修改需要被保存下来，那么需要把 **暂存区** 的文件复制到 **本地仓库** ，这个过程就是 **commit（提交）**。
 
 而且在提交时，我们还会为暂存区的文件提供一些额外信息。比如版本号和备注信息。那么提交完成后，仓库中将保存有 原始版本 和 修改后的 v1。（如下图）
 
-![image-20221127184637025](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127184637025.png)
+![image-20221127184637025](.\R package.assets\image-20221127184637025.png)
 
 
 
@@ -590,29 +588,29 @@ git config --global user.email "22xxxxxxxx@qq.com"
 
    - 查看目前文件状态 `git status` 
 
-   ![image-20221127193133247](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127193133247.png)
+   ![image-20221127193133247](.\R package.assets\image-20221127193133247.png)
 
    - 提示内容表明，标红的文件均是新文件，本地仓库中没有相关信息。随后我们就可以使用命令将工作区内容添加到暂存区：
      - 添加特定文件 `git add <filename>` 
      - 添加全部文件 `git add .` 
 
-   ![image-20221127202447501](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127202447501.png)
+   ![image-20221127202447501](.\R package.assets\image-20221127202447501.png)
 
 2. 将暂存区的内容正式提交到本地仓库
 
    - 查看目前文件状态 `git status` 
 
-   ![image-20221127193057536](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127193057536.png)
+   ![image-20221127193057536](.\R package.assets\image-20221127193057536.png)
 
    - 提示内容表明，标绿的文件是新添加的文件，正在等待被提交。随后，我们可以使用命令将暂存区内容添加到本地仓库：`git commit -m<description> ` 
      - 第一，提交步骤必须给定注释参数。这部分信息不会影响文件内容，但会被记录在日志里面。
      - 第二，该命令是将暂存区 **所有的** 未提交内容全部提交给本地仓库。
 
-   ![image-20221127202529139](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127202529139.png)
+   ![image-20221127202529139](.\R package.assets\image-20221127202529139.png)
 
 3. 最后再查看一次状态，提示内容表示并不存在未提交的文件，而且工作区内容较上一次添加，并没有发生修改。
 
-![image-20221127193300548](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127193300548.png)
+![image-20221127193300548](.\R package.assets\image-20221127193300548.png)
 
 ## 3.2 GitHub 仓库
 
@@ -622,15 +620,15 @@ git config --global user.email "22xxxxxxxx@qq.com"
 
 注册账号并建立一个空白仓库
 
-![image-20221127193511093](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127193511093.png)
+![image-20221127193511093](.\R package.assets\image-20221127193511093.png)
 
 选择新建仓库，并给定仓库名称即可。（选择公共仓库才可以被别人看到）
 
-![image-20221127193613551](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127193613551.png)
+![image-20221127193613551](.\R package.assets\image-20221127193613551.png)
 
 新建完成后，GitHub会提示你如何进行操作：
 
-![image-20221127195252112](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127195252112.png)
+![image-20221127195252112](.\R package.assets\image-20221127195252112.png)
 
 ### 3.2.2 将本地仓库推送至远程仓库（GitHub仓库）
 
@@ -651,7 +649,7 @@ git remote add origin https://github.com/wangchengLi6/randomwalkli.git
 * `git remote add origin https://github.com/wangchengLi6/randomwalkli.git` 添加远程仓库地址
 * `git remote set-url origin https://github.com/wangchengLi6/randomwalkli.git` 修改远程仓库地址
 
-![image-20221127202654594](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127202654594.png)
+![image-20221127202654594](.\R package.assets\image-20221127202654594.png)
 
 2. 连接之后，我们只需要将本地仓库的内容 **推送(push)** 至远程仓库（你所给定的远程仓库链接）即可。
 
@@ -665,7 +663,7 @@ git push -u origin master
 
 其中 master 是需要推送的分支名。 `-u` 命令是第一次push 的时候添加的参数，这会默认将本地仓库和远程仓库的 master 分支联系起来。
 
-![image-20221127202720206](D:\OneDrive\WorkingTable\ProjectOriented\2022\20221119 MeetReport\rpack\R package.assets\image-20221127202720206.png)
+![image-20221127202720206](.\R package.assets\image-20221127202720206.png)
 
 > 关于身份认证：
 >
