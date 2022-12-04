@@ -1,4 +1,19 @@
 # simpleRpackage
+R 包开发的中文教程
+
+包括的文件或文件夹有：
+- `.md` 是教程的 markdown 版本
+- `.pdf` 是 markdown 文件的 pdf 导出版
+- `.ssets` 文件夹中包含了所有被使用到的 png 图片
+- `code.R` 是提供的一个案例素材，实现的功能是绘制随机游走链
+
+该示例性的 R 包已经上传至 GitHub，可以使用如下命令安装：
+```{R}
+devtools::install_github("wangchengLi6/randomwalkli")
+```
+
+
+
 About how to develop a simple R package.
 
 There are three parts:
@@ -12,15 +27,4 @@ All of the guide book is written in chinese.
 
 
 
-R 包开发的中文教程
-
-包括的文件或文件夹有：
-- `.md` 是教程的 markdown 版本
-- `.pdf` 是 markdown 文件的 pdf 导出版
-- `.ssets` 文件夹中包含了所有被使用到的 png 图片
-- `code.R` 是提供的一个案例素材，实现的功能是绘制随机游走链
-
-该示例性的 R 包已经上传至 GitHub，可以使用如下命令安装：
-```{R}
-devtools::install_github("wangchengLi6/randomwalkli")
-```
+联系邮箱 2290726821@qq.com .
