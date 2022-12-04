@@ -2,17 +2,17 @@
 
 # 0 写在开头
 
+>本文所有内容分享在[simpleRpackage: About how to develop a simple R package (github.com)](https://github.com/wangchengLi6/simpleRpackage) 上。
+
 如果预览过 CRAN 提供的 R 包开发官方文档，或者 Hadley 写作的 R 包开发教程，就不难意识到，R 包的开发是一个非常非常复杂的软件工程问题。作为一名刚入门的研究生，我对于该领域一知半解。因此这篇文章更接近于学习笔记，而非详尽的开发教程。我希望这篇文章能对以下两类读者产生相应帮助：
 
 - 为仅需要制作一个 R 包并上传 GitHub 平台，来分享交流自身学术成果的读者，提供一个完整的中文教程。
 
 - 为刚刚接触 R 包开发，但需要深入学习的读者，提供一个完整的思维框架。事实上，我认为进阶的内容大多是在该框架上的缝缝补补。
 
-在开始之前，我提出了两个问题，并给出了自己的理解。
+在开始之前，我们需要思考一个问题，即为什么需要做一个 R 包。
 
-P1：为什么我们需要制作一个 R 包
-
-制作 R 包有很多种理由，但我的出发点是希望自己可能的某些学术成果能够更便捷地被其他人所使用，以实现推广和交流的目的。这意味着 R 包和单纯地公开代码并不一样，我们需要更多地从用户角度考虑。因此，制作一个 R 包至少要解决两个问题：
+制作 R 包可以有很多种理由，但我的出发点是希望自己可能的某些学术成果能够更便捷地被其他人所使用，以实现推广和交流的目的。这意味着 R 包和单纯地公开代码并不一样，我们需要更多地从用户角度考虑。因此，制作一个 R 包至少要解决两个问题：
 
 1. 将自己实现的功能打包在 R 包里。
 2. 使得用户能够使用 R 包（包括知道怎么用）。
@@ -45,7 +45,7 @@ P1：为什么我们需要制作一个 R 包
 
 该 R 包已经上传至 GitHub，使用命令 `devtools::install_github("wangchengLi6/randomwalkli")` 即可安装。创建该 R 包所需的素材包括三个函数，分别是 `gene.chain` （用于生成绘制随机游走链的数据），`plot.chain` （使用 `gene.chain` 函数的数据，使用 `ggplot2` 包来生成一个 ggplot 对象）。 `main` 调用前两个函数，并最终绘制出随机游走链。
 
-素材也已经上传至 GitHub [simpleRpackage: About how to develop a simple R package (github.com)](https://github.com/wangchengLi6/simpleRpackage) 
+素材也已经上传至 GitHub [simpleRpackage: About how to develop a simple R package (github.com)](https://github.com/wangchengLi6/simpleRpackage) 中的 `code.R` 文件。
 
 ## 1.1 准备工作
 
